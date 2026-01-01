@@ -50,7 +50,11 @@ const PricingBoxes = ({ pricingData, mode }: Props) => {
             </div>
 
             {item.id === 2 ? (
-              <PrimaryButton className="w-full px-6 py-3" text="Get started" />
+              <PrimaryButton
+                type="button"
+                className="w-full px-6 py-3"
+                text="Get started"
+              />
             ) : (
               <SecondaryButton
                 className="w-full px-6 py-3"
