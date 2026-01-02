@@ -124,7 +124,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="mt-12 overflow-x-hidden">
+      <main className="mt-12">
         <section id="section-1" className="px-5 md:px-10 xl:px-0">
           <div className="flex flex-col gap-y-10" data-aos="fade-up">
             <p className="text-white text-xs md:text-base md:font-semibold text-center">
@@ -171,7 +171,7 @@ export default function Home() {
 
         <section
           id="Features"
-          className="px-5 md:px-10 xl:px-0 pt-30 xl:container xl:mx-auto"
+          className="px-5 md:px-10 xl:px-0 pt-30 xl:container xl:mx-auto overflow-x-hidden"
         >
           <div className="flex flex-col gap-y-7.5 md:gap-y-12 lg:gap-y-18">
             <div className="flex flex-col gap-y-5">
@@ -291,7 +291,7 @@ export default function Home() {
 
         <section
           id="Capabilities"
-          className="px-5 md:px-10 xl:px-0 pt-40 xl:container xl:mx-auto"
+          className="px-5 md:px-10 xl:px-0 pt-40 xl:container xl:mx-auto overflow-x-hidden"
         >
           <div className="flex flex-col items-center gap-y-7.5 md:gap-y-12 lg:gap-y-18">
             <div className="flex flex-col gap-y-5">
@@ -507,7 +507,7 @@ export default function Home() {
           <FixedScroll />
         </section>
 
-        <section id="Testimonials" className="pt-40">
+        <section id="Testimonials" className="pt-40 overflow-x-hidden">
           <div className="flex flex-col gap-y-7.5 md:gap-y-12 lg:gap-y-18">
             <div className="flex flex-col items-center gap-y-5 px-5 md:px-10 xl:px-0">
               <div className="flex flex-col gap-y-2.5">
@@ -546,7 +546,7 @@ export default function Home() {
 
         <section
           id="Pricing"
-          className="px-5 md:px-10 xl:px-0 pt-40 xl:container xl:mx-auto"
+          className="px-5 md:px-10 xl:px-0 pt-40 xl:container xl:mx-auto overflow-hidden"
         >
           <div className="flex flex-col gap-y-7.5 md:gap-y-12 lg:gap-y-18">
             <div className="flex flex-col gap-y-5">
@@ -585,7 +585,7 @@ export default function Home() {
 
         <section
           id="Contact"
-          className="px-5 md:px-10 xl:px-0 pt-40 xl:container xl:mx-auto"
+          className="px-5 md:px-10 xl:px-0 pt-40 xl:container xl:mx-auto overflow-x-hidden"
         >
           <div className="flex flex-col gap-y-7.5 md:gap-y-12 lg:gap-y-18">
             <div className="flex flex-col gap-y-5">
