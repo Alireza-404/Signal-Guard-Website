@@ -52,6 +52,7 @@ const FixedScroll = () => {
 
           <div data-aos="fade-up" data-aos-duration="600">
             <PrimaryButton
+              type="button"
               text="Request demo"
               className="w-full xs:w-auto px-6 py-3"
             />
