@@ -5,88 +5,92 @@ import { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-const Particles = ({ particlesCount }: { particlesCount: number }) => {
-  const meshRef = useRef<THREE.Points>(null);
-
-  const positions = useMemo(() => {
-    const pos = new Float32Array(particlesCount * 3);
-    for (let i = 0; i < particlesCount * 3; i++) {
-      pos[i] = (Math.random() - 0.5) * 30;
-    }
-    return pos;
-  }, [particlesCount]);
-
-  const colors = useMemo(() => {
-    const cols = new Float32Array(particlesCount * 3);
-    for (let i = 0; i < particlesCount; i++) {
-      const hue = 0.33 + Math.random() * 0.05;
-      const color = new THREE.Color().setHSL(hue, 0.7, 0.5);
-      cols[i * 3] = color.r;
-      cols[i * 3 + 1] = color.g;
-      cols[i * 3 + 2] = color.b;
-    }
-    return cols;
-  }, [particlesCount]);
+const Particles = ({ count }: { count: number }) => {
+  const pointsRef = useRef<THREE.Points>(null);
 
   const geometry = useMemo(() => {
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 25;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 25;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 25;
+
+      const color = new THREE.Color().setHSL(
+        0.33 + Math.random() * 0.05,
+        0.6,
+        0.5
+      );
+
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+    }
+
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
     return geo;
-  }, [positions, colors]);
+  }, [count]);
 
-  const material = useMemo(() => {
-    return new THREE.PointsMaterial({
-      vertexColors: true,
-      size: 0.15,
-      sizeAttenuation: true,
-      transparent: true,
-      opacity: 0.8,
-    });
-  }, []);
+  const material = useMemo(
+    () =>
+      new THREE.PointsMaterial({
+        size: 0.12,
+        vertexColors: true,
+        transparent: false,
+      }),
+    []
+  );
 
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.0005;
-      meshRef.current.rotation.x += 0.0002;
-    }
+  useFrame((_, delta) => {
+    if (!pointsRef.current) return;
+    pointsRef.current.rotation.y += delta * 0.03;
   });
 
-  return <points ref={meshRef} geometry={geometry} material={material} />;
+  return <points ref={pointsRef} geometry={geometry} material={material} />;
 };
 
 const ParticlesBackground = () => {
-  const [particlesCount, setParticlesCount] = useState(1000);
+  const [particlesCount, setParticlesCount] = useState(150);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const updateParticles = () => {
-      if (window.innerWidth < 768) {
-        setParticlesCount(95);
-      } else {
-        setParticlesCount(150);
-      }
+    const update = () => {
+      const w = window.innerWidth;
+      setIsMobile(w < 768);
+
+      if (w < 768) setParticlesCount(70);
+      else if (w < 1024) setParticlesCount(120);
+      else setParticlesCount(250);
     };
 
-    updateParticles();
-    window.addEventListener("resize", updateParticles);
-    return () => window.removeEventListener("resize", updateParticles);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   return (
     <Canvas
-      camera={{ position: [0, 0, 15], fov: 75 }}
       className="absolute inset-0 -z-10"
+      camera={{ position: [0, 0, 15], fov: 70 }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: false, powerPreference: "high-performance" }}
     >
-      <ambientLight intensity={0.3} />
-      <Particles particlesCount={particlesCount} />
-      <EffectComposer>
-        <Bloom
-          luminanceThreshold={0}
-          luminanceSmoothing={0.9}
-          height={300}
-          opacity={1.5}
-        />
-      </EffectComposer>
+      <ambientLight intensity={0.4} />
+
+      <Particles count={particlesCount} />
+
+      {!isMobile && (
+        <EffectComposer>
+          <Bloom
+            luminanceThreshold={0.4}
+            luminanceSmoothing={0.9}
+            intensity={0.8}
+          />
+        </EffectComposer>
+      )}
     </Canvas>
   );
 };

@@ -124,7 +124,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="mt-12">
+      <main className="mt-12 overflow-x-hidden">
         <section id="section-1" className="px-5 md:px-10 xl:px-0">
           <div className="flex flex-col gap-y-10" data-aos="fade-up">
             <p className="text-white text-xs md:text-base md:font-semibold text-center">
