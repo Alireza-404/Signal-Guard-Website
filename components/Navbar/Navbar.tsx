@@ -53,7 +53,7 @@ const Navbar = () => {
             <PrimaryButton
               type="button"
               text="Request demo"
-              className="px-6 py-1.5 w-full"
+              className="px-6 py-2 w-full"
             />
           </motion.div>
         )}
@@ -135,7 +135,9 @@ const Navbar = () => {
         />
 
         <div
-          className={`flex ${showNavLinks ? "flex-row" : "flex-row-reverse"}`}
+          className={`flex lg:hidden items-center ${
+            showNavLinks ? "flex-row" : "flex-row-reverse"
+          }`}
         >
           <BsList
             className={`text-white cursor-pointer text-[42px] p-1 transition duration-500 ${
