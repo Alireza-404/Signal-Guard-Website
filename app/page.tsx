@@ -32,9 +32,7 @@ export default function Home() {
               absolute -top-5 left-0 right-0 blur-2xl"
             ></div>
 
-            <div className="hidden lg:block">
-              <ParticlesBackground />
-            </div>
+            <ParticlesBackground />
 
             <div
               className="z-10 h-2/12 bg-gradient-to-b from-[#000d0189] via-[#000d01] to-[#000d01]
