@@ -82,25 +82,33 @@ git clone https://github.com/Alireza-404/Signal-Guard-Website.git
 
 ### 2️⃣ Install dependencies
 
+```bash
 npm install
+```
 
 # or
 
+```bash
 yarn
+```
 
 ### 3️⃣ Run the project locally
 
+```bash
 npm run dev
+```
 
 # or
 
+```bash
 yarn dev
+```
 
 ---
 
 ## 🚀 Deployment
 
-This project is deployed on **Vercel** for instant preview and live testing.  
+This project is deployed on **Vercel** for instant preview and live testing.
 You can access the live website here: [Signal-Guard-Website Live](https://signal-guard-website-z404z.vercel.app)
 
 Vercel handles **automatic builds** from the GitHub repository, so every push to the `main` branch updates the live site instantly.
@@ -131,3 +139,7 @@ If you liked this project, feel free to ⭐ star the repo or connect with me! �
 
 - GitHub: [Alireza-404](https://github.com/Alireza-404)
 - Email: [alireza4o4shabani@gmail.com]
+
+```
+
+```
